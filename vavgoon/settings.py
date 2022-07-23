@@ -25,7 +25,7 @@ SECRET_KEY = 'ao$n$xd=s5gse8e@p=*@oht_lox0zv%q3cko2n*7n=igagm5n0'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['vavgoon.ir']
+ALLOWED_HOSTS = ['vavgoon.ir','127.0.0.1','localhost']
 
 
 # Application definition
