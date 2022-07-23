@@ -16,7 +16,7 @@ inputTextArea.addEventListener("input", () => {
 });
 $('#submit-btn').click(function(){
   let text=$('#input-textarea').val();
-  $.post("http://127.0.0.1:8000/api/v1/normalize/",
+  $.post("http://154.91.170.227:8001/api/v1/normalize/",
   {
     text: text,
 
