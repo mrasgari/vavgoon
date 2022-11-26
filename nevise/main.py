@@ -118,9 +118,14 @@ def load_pretrained(model, checkpoint_path, optimizer=None, device='cuda'):
 def load_pre_model(vocab_path, model_checkpoint_path):
     DEVICE = "cuda:0" if torch.cuda.is_available() else "cpu"
     print(f"loading vocab from ")
-    vocab = load_vocab_dict('/home/mohammad/work_dir/vavgoon/vavgoon/nevise/model/vocab.pkl')
+    #BASE_DIR = Path(__file__).resolve()
+    #vocab = load_vocab_dict(BASE_DIR+'/model/vocab.pkl')
+    BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+    vocab_path = os.path.join(BASE_DIR, 'nevise/model/vocab.pkl')
+    vocab = load_vocab_dict(vocab_path)
     model = load_model(vocab)
-    model = load_pretrained(model, '/home/mohammad/work_dir/vavgoon/vavgoon/nevise/model/model.pth.tar')
+    model_checkpoint_path = os.path.join('model', 'model.pth.tar')
+    #model = load_pretrained(model, BASE_DIR+'/model/model.pth.tar')
     return model, vocab, DEVICE
 
 
