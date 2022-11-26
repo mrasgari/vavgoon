@@ -10,7 +10,7 @@ from nevise.helpers import  untokenize_without_unks, untokenize_without_unks2, g
 from hazm import Normalizer
 from nevise.models import SubwordBert
 from nevise.utils import get_sentences_splitters
-
+from pathlib import Path
 
 def model_inference(model, data, topk, DEVICE, BATCH_SIZE=16, vocab_=None):
     """
@@ -117,10 +117,10 @@ def load_pretrained(model, checkpoint_path, optimizer=None, device='cuda'):
 
 def load_pre_model(vocab_path, model_checkpoint_path):
     DEVICE = "cuda:0" if torch.cuda.is_available() else "cpu"
-    print(f"loading vocab from {vocab_path}")
-    vocab = load_vocab_dict(vocab_path)
+    print(f"loading vocab from ")
+    vocab = load_vocab_dict('/home/mohammad/work_dir/vavgoon/vavgoon/nevise/model/vocab.pkl')
     model = load_model(vocab)
-    model = load_pretrained(model, model_checkpoint_path)
+    model = load_pretrained(model, '/home/mohammad/work_dir/vavgoon/vavgoon/nevise/model/model.pth.tar')
     return model, vocab, DEVICE
 
 
@@ -161,7 +161,9 @@ def spell_checking_on_sents(model, vocab, device, normalizer, txt):
 
 if __name__ == '__main__':
     normalizer = Normalizer(punctuation_spacing=False, remove_extra_spaces=False)
-    vocab_path = os.path.join('model', 'vocab.pkl')
+    BASE_DIR = Path(__file__).resolve()
+    vocab_path ='/home/mohammd/work_dir/vavgoon/vavgoon/model/vocab.pkl'
+    print(vocab_path)
     model_checkpoint_path = os.path.join('model', 'model.pth.tar')
     model, vocab, device = load_pre_model(vocab_path=vocab_path, model_checkpoint_path=model_checkpoint_path)
     #test
